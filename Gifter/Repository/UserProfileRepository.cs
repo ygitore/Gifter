@@ -49,5 +49,14 @@ namespace Gifter.Repositories
             _context.UserProfile.Remove(userProfile);
             _context.SaveChanges();
         }
+        public List<UserProfile> Search(string criterion, bool sortDescending)
+        {
+            var query = _context.UserProfile
+                                .Where(p => p.Name.Contains(criterion));
+
+            return sortDescending
+                ? query.OrderByDescending(p => p.DateCreated).ToList()
+                : query.OrderBy(p => p.DateCreated).ToList();
+        }
     }
 }

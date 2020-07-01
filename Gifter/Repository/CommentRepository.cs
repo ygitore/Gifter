@@ -49,5 +49,14 @@ namespace Gifter.Repositories
             _context.Comment.Remove(comment);
             _context.SaveChanges();
         }
+        public List<Comment> Search(string criterion, bool sortDescending)
+        {
+            var query = _context.Comment
+                                .Where(p => p.Message.Contains(criterion));
+
+            return sortDescending
+                ? query.OrderByDescending(p => p.Message).ToList()
+                : query.OrderBy(p => p.Message).ToList();
+        }
     }
 }
