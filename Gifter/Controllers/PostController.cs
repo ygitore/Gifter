@@ -2,6 +2,7 @@
 using Gifter.Data;
 using Gifter.Repositories;
 using Gifter.Models;
+using System;
 
 namespace Gifter.Controllers
 {
@@ -31,11 +32,25 @@ namespace Gifter.Controllers
             }
             return Ok(post);
         }
+
         [HttpGet("getbyuser/{id}")]
         public IActionResult GetByUser(int id)
         {
             return Ok(_postRepository.GetByUserProfileId(id));
         }
+
+        [HttpGet("search")]
+        public IActionResult Search(string q, bool sortDesc)
+        {
+            return Ok(_postRepository.Search(q, sortDesc));
+        }
+
+        [HttpGet("hottest")]
+        public IActionResult Search(DateTime since)
+        {
+            return Ok(_postRepository.GetLatest(since));
+        }
+
         [HttpPost]
         public IActionResult Post(Post post)
         {
@@ -60,11 +75,6 @@ namespace Gifter.Controllers
         {
             _postRepository.Delete(id);
             return NoContent();
-        }
-        [HttpGet("search")]
-        public IActionResult Search(string q, bool sortDesc)
-        {
-            return Ok(_postRepository.Search(q, sortDesc));
         }
     }
 }

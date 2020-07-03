@@ -1,8 +1,10 @@
-﻿using System.Linq;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using Gifter.Data;
+﻿using Gifter.Data;
 using Gifter.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Gifter.Repositories
 {
@@ -12,25 +14,21 @@ namespace Gifter.Repositories
 
         public CommentRepository(ApplicationDbContext context)
         {
-            _context = context;;
-        }
-
-        public List<Comment> GetAll()
-        {
-            return _context.Comment.ToList();
+            _context = context;
         }
 
         public Comment GetById(int id)
         {
-            return _context.Comment.FirstOrDefault(p => p.Id == id);
+            return _context.Comment.FirstOrDefault(c => c.Id == id);
         }
-        public List<Comment> GetByPostId(int id)
+
+        public List<Comment> GetByPostId(int postId)
         {
-            return _context.Comment.Include(p => p.PostId)
-                            .Where(p => p.PostId == id)
-                            .OrderBy(p => p.PostId)
+            return _context.Comment
+                            .Where(c => c.PostId == postId)
                             .ToList();
         }
+
         public void Add(Comment comment)
         {
             _context.Add(comment);
@@ -48,15 +46,6 @@ namespace Gifter.Repositories
             var comment = GetById(id);
             _context.Comment.Remove(comment);
             _context.SaveChanges();
-        }
-        public List<Comment> Search(string criterion, bool sortDescending)
-        {
-            var query = _context.Comment
-                                .Where(p => p.Message.Contains(criterion));
-
-            return sortDescending
-                ? query.OrderByDescending(p => p.Message).ToList()
-                : query.OrderBy(p => p.Message).ToList();
         }
     }
 }

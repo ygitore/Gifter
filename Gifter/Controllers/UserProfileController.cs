@@ -1,73 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Gifter.Data;
+﻿using Gifter.Data;
 using Gifter.Models;
 using Gifter.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Gifter.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserProfileController : Controller
+    public class UserProfileController : ControllerBase
     {
-        private readonly UserProfileRepository _userProfileRepository;
+        private readonly UserRepository _userRepo;
         public UserProfileController(ApplicationDbContext context)
         {
-            _userProfileRepository = new UserProfileRepository(context);
-        }
-        [HttpGet]
-        public IActionResult Get()
-        {
-            return Ok(_userProfileRepository.GetAll());
+            _userRepo = new UserRepository(context);
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var post = _userProfileRepository.GetById(id);
-            if (post == null)
+            var user = _userRepo.GetById(id);
+
+            if (user == null)
             {
                 return NotFound();
             }
-            return Ok(post);
+            return Ok(user);
         }
-        [HttpGet("getbyuser/{id}")]
-        public IActionResult GetByUser(int id)
-        {
-            return Ok(_userProfileRepository.GetByUserProfileId(id));
-        }
+
         [HttpPost]
-        public IActionResult Post(UserProfile userProfile)
+        public IActionResult Post(UserProfile user)
         {
-            _userProfileRepository.Add(userProfile);
-            return CreatedAtAction("Get", new { id = userProfile.Id }, userProfile);
+            _userRepo.Add(user);
+            return CreatedAtAction("Get", new { id = user.Id }, user);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, UserProfile userProfile)
+        public IActionResult Put(int id, UserProfile user)
         {
-            if (id != userProfile.Id)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
 
-            _userProfileRepository.Update(userProfile);
+            _userRepo.Update(user);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _userProfileRepository.Delete(id);
+            _userRepo.Delete(id);
             return NoContent();
-        }
-        [HttpGet("search")]
-        public IActionResult Search(string q, bool sortDesc)
-        {
-            return Ok(_userProfileRepository.Search(q, sortDesc));
         }
     }
 }
