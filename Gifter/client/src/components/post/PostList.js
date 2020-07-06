@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useMemo } from "react";
-import { PostContext } from "../providers/PostProvider";
+import { PostContext } from "../../providers/PostProvider";
 import Post from "./Post";
 import { Input } from "reactstrap";
 import debounce from "lodash/debounce";

@@ -4,7 +4,7 @@ export const PostContext = React.createContext();
 
 export const PostProvider = (props) => {
   const [posts, setPosts] = useState([]);
-
+  
   const getAllPosts = () => {
     return fetch("api/post")
       .then((res) => res.json())

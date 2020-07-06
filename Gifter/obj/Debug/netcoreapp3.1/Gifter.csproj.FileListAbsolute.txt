@@ -149,3 +149,8 @@ C:\Users\Owner\workspace\Gifter\Gifter\obj\Debug\netcoreapp3.1\staticwebassets\G
 C:\Users\Owner\workspace\Gifter\Gifter\obj\Debug\netcoreapp3.1\Gifter.dll
 C:\Users\Owner\workspace\Gifter\Gifter\obj\Debug\netcoreapp3.1\Gifter.pdb
 C:\Users\Owner\workspace\Gifter\Gifter\obj\Debug\netcoreapp3.1\Gifter.genruntimeconfig.cache
+C:\Users\Owner\workspace\Gifter\Gifter\bin\Debug\netcoreapp3.1\client\build\asset-manifest.json
+C:\Users\Owner\workspace\Gifter\Gifter\bin\Debug\netcoreapp3.1\client\build\manifest.json
+C:\Users\Owner\workspace\Gifter\Gifter\bin\Debug\netcoreapp3.1\client\package-lock.json
+C:\Users\Owner\workspace\Gifter\Gifter\bin\Debug\netcoreapp3.1\client\package.json
+C:\Users\Owner\workspace\Gifter\Gifter\bin\Debug\netcoreapp3.1\client\public\manifest.json

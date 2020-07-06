@@ -40,7 +40,6 @@ namespace Gifter.Repositories
                             .OrderBy(p => p.Title)
                             .ToList();
         }
-
         public List<Post> Search(string criterion, bool sortDescending)
         {
             var query = _context.Post

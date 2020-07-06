@@ -20,6 +20,12 @@ namespace Gifter.Controllers
             _commentRepo = new CommentRepository(context);
         }
 
+        [HttpGet]
+        public IActionResult GetAll()
+        {            
+            return Ok(_commentRepo.GetAll());
+        }
+
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {

@@ -16,6 +16,14 @@ namespace Gifter.Repositories
         {
             _context = context;
         }
+        public List<Comment> GetAll()
+        {
+            return _context.Comment
+                           .Include(p => p.Post)
+                           .Include(u => u.UserProfile)
+                           .ToList();
+        }
+
 
         public Comment GetById(int id)
         {
