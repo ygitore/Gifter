@@ -65,6 +65,20 @@ namespace GifterTest
             Assert.Equal(3, results.Count);
             Assert.Equal(mostRecentTitle, results[2].Title);
         }
+        [Fact]
+        public void User_Can_Delete_Post_With_Comment()
+        {
+            var postIdWithComment = 2;
+            var repo = new PostRepository(_context);
+
+            // Attempt to delete it
+            repo.Delete(postIdWithComment);
+
+            // Now attempt to get it
+            var result = repo.GetById(postIdWithComment);
+
+            Assert.Null(result);
+        }
         // Add sample data
         private void AddSampleData()
         {
