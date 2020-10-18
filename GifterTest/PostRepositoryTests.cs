@@ -147,11 +147,18 @@ namespace GifterTest
                 Message = "The post really tied the room together",
                 UserProfile = user2
             };
+            var comment3 = new Comment()
+            {
+                Post = post2,
+                Message = "The post really tied the room together",
+                UserProfile = user2
+            };
 
             _context.Add(post1);
             _context.Add(post2);
             _context.Add(post3);
             _context.Add(comment1);
+            _context.Add(comment3);
             _context.Add(comment2);
             _context.SaveChanges();
         }
