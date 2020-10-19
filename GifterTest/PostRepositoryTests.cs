@@ -133,6 +133,14 @@ namespace GifterTest
                 UserProfile = user3,
                 DateCreated = DateTime.Now - TimeSpan.FromDays(12),
             };
+            var post4 = new Post()
+            {
+                Caption = "It really ties the room together",
+                Title = "My Rug",
+                ImageUrl = "http://foo.gif",
+                UserProfile = user3,
+                DateCreated = DateTime.Now - TimeSpan.FromDays(12),
+            };
 
             var comment1 = new Comment()
             {
@@ -157,6 +165,7 @@ namespace GifterTest
             _context.Add(post1);
             _context.Add(post2);
             _context.Add(post3);
+            _context.Add(post4);
             _context.Add(comment1);
             _context.Add(comment3);
             _context.Add(comment2);
